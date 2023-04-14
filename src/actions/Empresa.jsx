@@ -10,6 +10,11 @@ export const empresa_get_search = async (cnpj) => {
     return await ApiGet(endp)
 }
 
+export const empresa_get_all = async () => {
+    const endp = endpoints.EMPRESA_GET_ALL;
+    return await ApiGet(endp)
+}
+
 export const empresa_post = async (cnpj, corporate_name, line_of_business, rh_person_name,
     rh_position_in_company, rh_email, rh_telephone, address_cep, address, address_number,
     address_city, address_state, address_complement) => {
@@ -17,17 +22,18 @@ export const empresa_post = async (cnpj, corporate_name, line_of_business, rh_pe
     const data = {
         cnpj: cnpj,
         corporate_name: corporate_name,
+        fantasy_name: corporate_name,
         line_of_business: line_of_business,
-        rh_person_name: rh_person_name,
-        rh_position_in_company: rh_position_in_company,
-        rh_email: rh_email,
-        rh_telephone: rh_telephone,
-        address_cep: address_cep,
+        representative_name: rh_person_name,
+        representative_job: rh_position_in_company,
+        email: rh_email,
+        telephone: rh_telephone,
+        cep: address_cep,
         address: address,
-        address_number: address_number,
-        address_city: address_city,
-        address_state: address_state,
-        address_complement: address_complement
+        number: address_number,
+        city: address_city,
+        state: address_state,
+        complement: address_complement
     }
     console.log(data)
     return await ApiPost(endp, data)
@@ -40,17 +46,18 @@ export const empresa_put = async (cnpj, corporate_name, line_of_business, rh_per
     const data = {
         cnpj: cnpj,
         corporate_name: corporate_name,
+        fantasy_name: corporate_name,
         line_of_business: line_of_business,
-        rh_person_name: rh_person_name,
-        rh_position_in_company: rh_position_in_company,
-        rh_email: rh_email,
-        rh_telephone: rh_telephone,
-        address_cep: address_cep,
+        representative_name: rh_person_name,
+        representative_job: rh_position_in_company,
+        email: rh_email,
+        telephone: rh_telephone,
+        cep: address_cep,
         address: address,
-        address_number: address_number,
-        address_city: address_city,
-        address_state: address_state,
-        address_complement: address_complement
+        number: address_number,
+        city: address_city,
+        state: address_state,
+        complement: address_complement
     }
     return await ApiPut(endp, data)
 }

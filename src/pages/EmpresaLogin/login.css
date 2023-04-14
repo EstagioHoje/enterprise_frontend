@@ -1,0 +1,107 @@
+.logInBackground {
+  width: 100%;
+  height: 100vh;
+  background-image: url("../../images/logInBackground.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow-y: auto;
+  /* padding: calc(50vh - 216px); */
+  padding: 50px 0;
+  text-align: center;
+}
+
+/* Border outside of inputs from user */
+.popup {
+  width: fit-content;
+  background-color: var(--main-color);
+  border: 7px solid var(--main-color);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.popup > img {
+  padding: 15px;
+  height: 150px;
+  margin: auto;
+}
+
+/* Area of inputs from user */
+
+.popupForm {
+  background-color: var(--neutral-color-2);
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  width: 200px;
+  margin: auto;
+}
+
+/* Popup Forms Text */
+
+.popupForm > h1 {
+  color: var(--main-color);
+  font-size: 25px;
+  font-family: var(--font);
+  margin-top: 15px;
+  margin: auto;
+}
+
+.popupForm > p {
+  color: var(--main-color);
+  font-size: 20px;
+  font-family: var(--font);
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* Popup Forms inputs */
+
+.popupForm > input {
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  margin: 5px 15px;
+  text-align: center;
+}
+
+.popupForm > select {
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  margin: 5px 15px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.popupForm > button {
+  margin: 5px auto;
+  text-align: center;
+}
+
+/* buttons to create user and recover password */
+.extraButtons {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  width: 200px;
+  text-align: center;
+  margin: auto;
+}
+
+.extraButtons > button {
+  width: 100%;
+  padding: 5px 0;
+  color: var(--neutral-color);
+  background-color: var(--main-color);
+  font-size: 15px;
+  text-align: center;
+}
+
+.rowButtons {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}

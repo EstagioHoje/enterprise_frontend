@@ -1,11 +1,11 @@
 version: '3.4'
 
 services:
-  frontend_website_template:
-    container_name: frontend_website_template
+  frontend_website_template3:
+    container_name: frontend_website_template3
     build: .
     ports:
-      - 1234:1234
+      - 1237:1234
     restart: unless-stopped
     tty: true
     volumes:

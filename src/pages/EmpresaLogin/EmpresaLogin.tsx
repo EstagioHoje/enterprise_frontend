@@ -1,24 +1,15 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
 import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import Grid from '@mui/material/Unstable_Grid2';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import logo from "../../data/logo.png";
-import InputMask from "react-input-mask";
-import { useSearchParams, Route, Link } from 'react-router-dom'
+import './login.css'
 
-import { api_links } from '../../actions/server_core/endpoint';
-import { empresa_put } from '../../actions/Empresa';
-import { empresa_get_search } from '../../actions/Empresa';
-import { empresa_delete } from '../../actions/Empresa';
+import { login_post } from '../../actions/Login';
 
-export default function EmpresaLogin({ isAuthorized }) {
+export default function EmpresaLogin({ isAuthorized, setAuthorized }) {
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const navigate = useNavigate()
 
     useEffect(() => {
         function handleResize() {
@@ -34,21 +25,40 @@ export default function EmpresaLogin({ isAuthorized }) {
         }
     })
 
-
-    if (isAuthorized == true) {
+    function login(){
+        const cnpj = document.getElementById("full-name").value;
+        localStorage.setItem("cnpj",cnpj);
         const returnPathname = sessionStorage.getItem("lastPage") ?? "/";
         sessionStorage.removeItem("lastPage");
-        console.log(returnPathname)
+        localStorage.setItem("isAuthorized","true")
+        setAuthorized(true)
+        console.log(returnPathname);
+        return(
+            <Navigate to={returnPathname} replace></Navigate>
+        );
+    }
+
+    if (isAuthorized == true) {
+        const returnPathname = sessionStorage.getItem("lastPage") ?? "/vagas";
+        sessionStorage.removeItem("lastPage");
+        console.log(returnPathname);
         return(
             <Navigate to={returnPathname} replace></Navigate>
         );
     }
 
     return (
-        <Container disableGutters maxWidth={windowWidth} sx={{ padding: 0 }}>
-            <Box sx={{ minWidth: 800, minHeight: 300, height: windowHeight, padding: 0, mb: 0 }}>
-                Teste Login
-            </Box>
-        </Container>
-    );
+        <div className='container'>
+          <div className="popupForm">
+            <p>Usuário ou e-mail</p>
+            <input id="full-name" name="full-name" type="text"></input>
+            <p>Senha</p>
+            <input id="password" name="password" type="text"></input>
+            <button className='highButton' onClick={() => login()}>Login</button>
+          </div>
+          <div className='extraButtons'>
+            <button onClick={() => navigate("/cadastro")}>Não possui cadastro?</button>
+          </div>
+        </div>
+      )
 }
