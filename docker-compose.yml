@@ -1,8 +1,8 @@
 version: '3.4'
 
 services:
-  frontend_website_template3:
-    container_name: frontend_website_template3
+  frontend_enterprise:
+    container_name: frontend_enterprise
     build: .
     ports:
       - 1237:1234

@@ -5,7 +5,7 @@
 
 # Estágio Hoje
 
-> Website de template para as aplicações web do projeto estágio Hoje da diciplina PCS3553 - Laboratório de Engenharia de Software II
+> Website para Empresas do projeto Estágio Hoje da diciplina PCS3553 - Laboratório de Engenharia de Software II
 
 ## 🚀 How to execute
 
@@ -16,7 +16,7 @@ chmod +x run.sh
 
 Acess:
 ```
-http://localhost:1234
+http://localhost:1237
 ```
 
 ## 📦 Dependencies
