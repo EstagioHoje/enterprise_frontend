@@ -7,4 +7,31 @@
   --font: "Nunito";
 }
 
+* {
+  padding: 0;
+  box-sizing: border-box;
+}
 
+.container {
+  width: 100%;
+}
+
+button {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.rowButtons {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+.highButton {
+  padding: 10px 20px;
+  margin: 5px;
+  color: var(--secondary-color);
+  background-color: var(--main-color);
+  font-size: 18px;
+}

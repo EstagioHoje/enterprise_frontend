@@ -13,11 +13,11 @@ import { empresa_get_search, empresa_post, empresa_put } from '../../actions/Emp
 
 export default function EmpresaCreate({setAuthorized}) {
     const navigate = useNavigate()
-
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    const [cnpj, setCnpj] = useState([])
+
     const [corporate_name, setCorporate_name] = useState([])
+    const [cnpj, setCnpj] = useState([])
     const [line_of_business, setLine_of_business] = useState([])
     const [rh_person_name, setRh_person_name] = useState([])
     const [rh_position_in_company, SetRh_position_in_company] = useState([])
@@ -45,16 +45,16 @@ export default function EmpresaCreate({setAuthorized}) {
     })
 
     const register_empresa = async () => {
-        var cnpjString = String(cnpj)
-        const cnpjInt = parseInt(cnpjString.replace(/\D/g, ""))
-        console.log(cnpjInt)
-        var rh_telephoneString = String(rh_telephone)
-        const rh_telephoneInt = parseInt(rh_telephoneString.replace(/\D/g, ""))
-        var address_numberString = String(address_number)
-        const address_numberInt = parseInt(address_numberString.replace(/\D/g, ""))
-        const info = empresa_post(cnpjInt, corporate_name, line_of_business, rh_person_name,
-            rh_position_in_company, rh_email, rh_telephoneInt, address_cep, address,
-            address_numberInt, address_city, address_state, address_complement)
+        console.log(cnpj)
+        let cnpjString = String(cnpj)
+        const cnpjStringMod = cnpjString.replace(/\D/g, "")
+        let rh_telephoneString = String(rh_telephone)
+        const rh_telephoneStringMod = rh_telephoneString.replace(/\D/g, "")
+        let address_numberString = String(address_number)
+        const address_numberStringMod = address_numberString.replace(/\D/g, "")
+        const info = empresa_post(cnpjStringMod, corporate_name, line_of_business, rh_person_name,
+            rh_position_in_company, rh_email, rh_telephoneStringMod, address_cep, address,
+            address_numberStringMod, address_city, address_state, address_complement)
         console.log(info)
         //navigate("/login")
     }
@@ -116,7 +116,7 @@ export default function EmpresaCreate({setAuthorized}) {
                             mx: 2
                         }}>
                             <Box sx={{ my: 2 }}>
-                                Informações dewedeeda Empresa
+                                Informações da Empresa
                             </Box>
                             <Box sx={{ my: 2 }}>
                                 <Grid container spacing={0} columns="16">

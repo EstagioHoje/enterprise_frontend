@@ -3,62 +3,74 @@ import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import './login.css'
+import logo from '../../images/logo.svg'
 
-import { login_post } from '../../actions/Login';
+import { login_enterprise } from '../../actions/Login';
 
 export default function EmpresaLogin({ isAuthorized, setAuthorized }) {
-    const [windowHeight, setWindowHeight] = useState(window.innerHeight);
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [cnpj, setCnpj] = useState('')
+    const [password, setPassword] = useState('')
     const navigate = useNavigate()
 
-    useEffect(() => {
-        function handleResize() {
-            setWindowHeight(window.innerHeight)
-            setWindowWidth(window.innerWidth)
-            console.log(window.location.href)
+    const login = async () => {
+        let enterprise = await login_enterprise(cnpj, password);
+        if(enterprise.data !== undefined) {
+            const returnPathname = sessionStorage.getItem('lastPage') ?? '/';
+            sessionStorage.removeItem('lastPage');
+            localStorage.setItem('authorized', 'true')
+            localStorage.setItem('cnpj', cnpj)
+            setAuthorized(true)
+            return(
+                <Navigate to={returnPathname} replace></Navigate>
+            );
+        } else {
+            setCnpj('')
         }
+    }
 
-        window.addEventListener('resize', handleResize);
-
-        return _ => {
-            window.removeEventListener('resize', handleResize);
+    function onCnpjChange(value) {
+        if(value >= 0) {
+            setCnpj(value)
         }
-    })
-
-    function login(){
-        const cnpj = document.getElementById("full-name").value;
-        localStorage.setItem("cnpj",cnpj);
-        const returnPathname = sessionStorage.getItem("lastPage") ?? "/";
-        sessionStorage.removeItem("lastPage");
-        localStorage.setItem("isAuthorized","true")
-        setAuthorized(true)
-        console.log(returnPathname);
-        return(
-            <Navigate to={returnPathname} replace></Navigate>
-        );
     }
 
     if (isAuthorized == true) {
         const returnPathname = sessionStorage.getItem("lastPage") ?? "/vagas";
         sessionStorage.removeItem("lastPage");
-        console.log(returnPathname);
         return(
             <Navigate to={returnPathname} replace></Navigate>
         );
     }
 
     return (
-        <div className='container'>
-          <div className="popupForm">
-            <p>Usuário ou e-mail</p>
-            <input id="full-name" name="full-name" type="text"></input>
-            <p>Senha</p>
-            <input id="password" name="password" type="text"></input>
-            <button className='highButton' onClick={() => login()}>Login</button>
-          </div>
-          <div className='extraButtons'>
-            <button onClick={() => navigate("/cadastro")}>Não possui cadastro?</button>
-          </div>
+        <div className='logInBackground'>
+            <div className='popup'>
+                <img src={logo} alt='Estágio Hoje' />
+                <div className='container'>
+                    <div className="popupForm">
+                        <h1>Empresa</h1>
+                        <p>CNPJ</p>
+                        <input
+                            id='cnpj'
+                            name='cnpj'
+                            type='text'
+                            value={cnpj}
+                            onChange={(e) => onCnpjChange(e.target.value)}
+                        />
+                        <p>Senha</p>
+                        <input
+                            id='password'
+                            name='password'
+                            type='password'
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <button className='highButton' onClick={login}>Login</button>
+                    </div>
+                    <div className='extraButtons'>
+                        <button onClick={() => navigate("/cadastro")}>Não possui cadastro?</button>
+                    </div>
+                </div>
+            </div>
         </div>
       )
 }
