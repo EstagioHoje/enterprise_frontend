@@ -5,6 +5,15 @@
   width: 240px;
 }
 
+.sidebar > h1 {
+  margin: auto;
+  color: var(--secondary-color);
+  font-size: 25px;
+  font-family: var(--font);
+  text-align: center;
+  margin-top: 15px;
+}
+
 .logoImage {
   margin: auto;
   margin-top: 20px;
@@ -13,39 +22,15 @@
 }
 
 .buttonsArea {
-  /* display: flex; */
   margin: 15px;
-  /* margin-bottom: 10px;
-  width: 100%;
-  margin-bottom: 40px;
-  background-color: var(--main-color); */
 }
-
-
-/* .dashboard-selector {
-  height: 100px;
-  width: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  background-color: #999;
-  color: #f9f9f9;
-  font-weight: bold;
-} */
-
 
 .navButton {
   width: 100%;
   display: flex;
-  /* display: inline-block; */
   margin-bottom: 15px;
   background-color: var(--neutral-color);
 }
-
-/* .buttonsArea:last-of-type {
-  margin-bottom: 0;
-} */
 
 .navButton > img {
   width: 40px;
@@ -73,10 +58,4 @@
   background-color: var(--main-color);
   display: block;
   font-size: 20px;
-}
-
-.buttons {
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }

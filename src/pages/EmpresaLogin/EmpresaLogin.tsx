@@ -14,7 +14,7 @@ export default function EmpresaLogin({ isAuthorized, setAuthorized }) {
 
     const login = async () => {
         let enterprise = await login_enterprise(cnpj, password);
-        if(enterprise.data !== undefined) {
+        if(enterprise.data[0] !== undefined) {
             const returnPathname = sessionStorage.getItem('lastPage') ?? '/';
             sessionStorage.removeItem('lastPage');
             localStorage.setItem('authorized', 'true')
