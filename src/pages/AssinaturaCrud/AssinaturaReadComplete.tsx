@@ -269,7 +269,7 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                 </Grid>
               </Box>
               <Box sx={{ my: 2 }}>
-                <h2>Informações da Empresa</h2>
+                <h2>Informações do Aluno</h2>
               </Box>
               <Box sx={{ my: 2 }}>
                 <Grid container spacing={0} columns="16">
