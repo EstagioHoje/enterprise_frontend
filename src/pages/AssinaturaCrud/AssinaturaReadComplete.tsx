@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import InputMask from "react-input-mask";
 import { useNavigate } from 'react-router-dom';
 import MenuItem from '@mui/material/MenuItem';
+import { Collapse } from '@mui/material';
 
 import { Sidebar } from '../../components/sidebar/sidebar';
 
@@ -17,47 +18,56 @@ import { empresa_get_search } from '../../actions/Empresa';
 
 export default function AssinaturaReadComplete({ setAuthorized }) {
   const navigate = useNavigate()
-  const params = new URLSearchParams(window.location.search);
-  const [cnpj, setCnpj] = useState(sessionStorage.getItem("cnpj"))
 
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [windowWidth, setWindowWidth] = useState(window.innerHeight);
 
+  const params = new URLSearchParams(window.location.search);
   const [id, setId] = useState(params.get("id"))
-  const [start_date, setStart_date] = useState('');
-  const [end_date, setEnd_date] = useState('');
-  const [weekly_hours, setWeekly_hours] = useState('');
-  const [salary, setSalary] = useState('');
-  const [transport_bonus, setTransport_bonus] = useState('');
-  const [description, setDescription] = useState('');
+  const [start_date, setStart_date] = useState([]);
+  const [end_date, setEnd_date] = useState([]);
+  const [weekly_hours, setWeekly_hours] = useState([]);
+  const [salary, setSalary] = useState([]);
+  const [transport_bonus, setTransport_bonus] = useState([]);
+  const [description, setDescription] = useState([]);
 
-  const [student_email, Set_student_email] = useState('');
-  const [student_id, Set_student_id] = useState('');
-  const [student_name, Set_student_name] = useState('')
-  const [student_cpf, Set_student_cpf] = useState('');
-  const [student_college, Set_student_college] = useState('');
-  const [student_course, Set_student_course] = useState('');
-  const [student_entry_year, Set_student_entry_year] = useState('');
-  const [student_telephone, Set_student_telephone] = useState('');
-  const [student_address, Set_student_address] = useState('');
-  const [student_cep, Set_student_cep] = useState('');
-  const [student_city, Set_student_city] = useState('');
-  const [student_number, Set_student_number] = useState('');
-  const [student_state, Set_student_state] = useState('');
-  const [student_complement, Set_student_complement] = useState('');
+  const [student_email, Set_student_email] = useState([]);
+  const [student_id, Set_student_id] = useState([]);
+  const [student_name, Set_student_name] = useState([])
+  const [student_cpf, Set_student_cpf] = useState(sessionStorage.getItem("cpf"));
+  const [student_college, Set_student_college] = useState([]);
+  const [student_course, Set_student_course] = useState([]);
+  const [student_entry_year, Set_student_entry_year] = useState([]);
+  const [student_telephone, Set_student_telephone] = useState([]);
+  const [student_address, Set_student_address] = useState([]);
+  const [student_cep, Set_student_cep] = useState([]);
+  const [student_city, Set_student_city] = useState([]);
+  const [student_number, Set_student_number] = useState([]);
+  const [student_state, Set_student_state] = useState([]);
+  const [student_complement, Set_student_complement] = useState([]);
 
-  const [corporate_name, setCorporate_name] = useState('')
-  const [line_of_business, setLine_of_business] = useState('')
-  const [rh_person_name, setRh_person_name] = useState('')
-  const [rh_position_in_company, SetRh_position_in_company] = useState('')
-  const [rh_email, setRh_email] = useState('')
-  const [rh_telephone, setRh_telephone] = useState('')
-  const [address_cep, setAddress_cep] = useState('')
-  const [address, setAddress] = useState('')
-  const [address_number, setAddress_number] = useState('')
-  const [address_city, setAddress_city] = useState('')
-  const [address_state, setAddress_state] = useState('')
-  const [address_complement, setAddress_complement] = useState('')
+  const [cnpj, setCnpj] = useState(sessionStorage.getItem("cnpj"))
+  const [corporate_name, setCorporate_name] = useState([])
+  const [line_of_business, setLine_of_business] = useState([])
+  const [rh_person_name, setRh_person_name] = useState([])
+  const [rh_position_in_company, SetRh_position_in_company] = useState([])
+  const [rh_email, setRh_email] = useState([])
+  const [rh_telephone, setRh_telephone] = useState([])
+  const [address_cep, setAddress_cep] = useState([])
+  const [address, setAddress] = useState([])
+  const [address_number, setAddress_number] = useState([])
+  const [address_city, setAddress_city] = useState([])
+  const [address_state, setAddress_state] = useState([])
+  const [address_complement, setAddress_complement] = useState([])
+  const [reject_reason, setReject_reason] = useState([])
+  const [status, setStatus] = useState([])
+  const dictStatus = {
+    "a": false,
+    "b": true,
+    "c": true,
+    "f": true,
+    "g": true,
+  }
 
   useEffect(() => {
     function handleResize() {
@@ -74,10 +84,11 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
     (async () => {
       const params = new URLSearchParams(window.location.search);
       setId(params.get("id"))
-      let contrato = await assinatura_get_search(params.get("id"))
-      if (contrato != null) {
-        if (contrato.data != null) {
-          const infoCorporate = contrato.data.company_data
+      let info = await assinatura_get_search(params.get("id"))
+      // console.log(info.data)
+      if (info != null) {
+        if (info.data != null) {
+          const infoCorporate = info.data.company_data
           setCorporate_name(infoCorporate.corporate_name)
           setLine_of_business(infoCorporate.line_of_business)
           setRh_person_name(infoCorporate.representative_name)
@@ -91,7 +102,7 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
           setAddress_state(infoCorporate.state)
           setAddress_complement(infoCorporate.complement)
 
-          const infoStudent = contrato.data.student_data
+          const infoStudent = info.data.student_data
           Set_student_email(infoStudent.email)
           Set_student_college(infoStudent.college)
           Set_student_name(infoStudent.name)
@@ -106,12 +117,13 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
           Set_student_state(infoStudent.state)
           Set_student_complement(infoStudent.complement)
 
-          setStart_date(contrato.data.start_date)
-          setEnd_date(contrato.data.end_date)
-          setWeekly_hours(contrato.data.weekly_hours)
-          setSalary(contrato.data.salary)
-          setTransport_bonus(contrato.data.transport_bonus)
-          setDescription(contrato.data.description)
+          setStart_date(info.data.start_date)
+          setEnd_date(info.data.end_date)
+          setWeekly_hours(info.data.weekly_hours)
+          setSalary(info.data.salary)
+          setTransport_bonus(info.data.transport_bonus)
+          setDescription(info.data.description)
+          setStatus(dictStatus[info.data.status])
         }
       }
     }
@@ -148,7 +160,8 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
           }}>
             <Box sx={{ mx: 2 }}>
               <Box sx={{ my: 2 }}>
-                <h1>Proposta de Contrato</h1>
+                <h1>Proposta de contrato</h1>
+                <h2>Informações da Vaga</h2>
               </Box>
               <Box sx={{ my: 2 }}>
                 <Grid container spacing={0} columns="12">
@@ -256,7 +269,7 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         id="avaliation"
                         value={description}
                         fullWidth
-                        label="Descreva as funções do estágiario (Máximo 1000 caracteres)"
+                        label="Descreva as funções do aluno (Máximo 1000 caracteres)"
                         multiline
                         maxRows={4}
                         inputProps={{ readOnly: true }}
@@ -267,7 +280,7 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                 </Grid>
               </Box>
               <Box sx={{ my: 2 }}>
-                <h2>Informações do Aluno</h2>
+                <h2>Informações do aluno</h2>
               </Box>
               <Box sx={{ my: 2 }}>
                 <Grid container spacing={0} columns="16">
@@ -277,8 +290,7 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         id="student_name"
                         value={student_name}
                         fullWidth
-                        label="Nome do estágiario"
-                        defaultValue=""
+                        label="Nome do aluno"
                         size="small"
                         inputProps={{ readOnly: true }}
                       />
@@ -290,12 +302,13 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         id="student_email"
                         value={student_email}
                         fullWidth
-                        label="Email do estágiario"
+                        label="Email do aluno"
                         size="small"
                         inputProps={{ readOnly: true }}
                       />
                     </Box>
                   </Grid>
+
                 </Grid>
               </Box>
               <Box sx={{ my: 2 }}>
@@ -306,12 +319,10 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         id="student_college"
                         value={student_college}
                         fullWidth
-                        label="Universidade estágiario"
-                        defaultValue=""
+                        label="Universidade do aluno"
                         size="small"
                         inputProps={{ readOnly: true }}
                       />
-
                     </Box>
                   </Grid>
                   <Grid xs>
@@ -320,8 +331,7 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         id="student_course"
                         value={student_course}
                         fullWidth
-                        label="Curso do estágiario"
-                        defaultValue=""
+                        label="Curso do aluno"
                         size="small"
                         inputProps={{ readOnly: true }}
                       />
@@ -342,8 +352,7 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         {() => <TextField
                           id="student_telephone"
                           fullWidth
-                          label="Telefone do estágiario"
-                          defaultValue=""
+                          label="Telefone do aluno"
                           size="small"
                           inputProps={{ readOnly: true }}
                         />}
@@ -356,7 +365,6 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         id="student_entry_year"
                         value={student_entry_year}
                         label="Ano de ingresso"
-                        defaultValue=""
                         fullWidth
                         size="small"
                         inputProps={{ readOnly: true }}
@@ -365,6 +373,8 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                   </Grid>
                 </Grid>
               </Box>
+
+
               <Box sx={{ my: 2 }}>
                 <Grid container spacing={0} columns="16">
                   <Grid xs={5}>
@@ -378,8 +388,7 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         {() => <TextField
                           id="student_cep"
                           fullWidth
-                          label="CEP do Estágiario"
-                          defaultValue=""
+                          label="CEP do aluno"
                           size="small"
                           inputProps={{ readOnly: true }}
                         />}
@@ -392,7 +401,6 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         id="address"
                         value={student_address}
                         label="Endereço"
-                        defaultValue=""
                         fullWidth
                         size="small"
                         inputProps={{ readOnly: true }}
@@ -410,7 +418,6 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         value={student_number}
                         fullWidth
                         label="Número"
-                        defaultValue=""
                         size="small"
                         inputProps={{ readOnly: true }}
                       />
@@ -422,7 +429,6 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         id="student_address"
                         value={student_address}
                         label="Cidade"
-                        defaultValue=""
                         fullWidth
                         size="small"
                         inputProps={{ readOnly: true }}
@@ -435,7 +441,6 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         id="student_state"
                         value={student_state}
                         label="Estado"
-                        defaultValue=""
                         fullWidth
                         size="small"
                         inputProps={{ readOnly: true }}
@@ -452,7 +457,6 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         id="student_complement"
                         value={student_complement}
                         label="Complemento"
-                        defaultValue=""
                         fullWidth
                         size="small"
                         inputProps={{ readOnly: true }}
@@ -507,7 +511,6 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                     value={line_of_business}
                     fullWidth
                     label="Ramo de atuação"
-                    defaultValue=""
                     size="small"
                     inputProps={{ readOnly: true }}
                   />
@@ -522,7 +525,6 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         value={rh_person_name}
                         fullWidth
                         label="Nome do representante"
-                        defaultValue=""
                         size="small"
                         inputProps={{ readOnly: true }}
                       />
@@ -534,7 +536,6 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         id="rh_position_in_company"
                         value={rh_position_in_company}
                         label="Cargo"
-                        defaultValue=""
                         fullWidth
                         size="small"
                         inputProps={{ readOnly: true }}
@@ -557,7 +558,6 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                           id="rh_telephone"
                           fullWidth
                           label="Telefone do RH"
-                          defaultValue=""
                           size="small"
                           inputProps={{ readOnly: true }}
                         />}
@@ -570,7 +570,6 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         id="rh_email"
                         value={rh_email}
                         label="Email do RH"
-                        defaultValue=""
                         fullWidth
                         size="small"
                         inputProps={{ readOnly: true }}
@@ -588,13 +587,11 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         value={address_cep}
                         disabled={false}
                         maskChar=" "
-
                       >
                         {() => <TextField
                           id="address_cep"
                           fullWidth
-                          label="CEP"
-                          defaultValue=""
+                          label="CEP da empresa"
                           size="small"
                           inputProps={{ readOnly: true }}
                         />}
@@ -607,7 +604,6 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         id="address"
                         value={address}
                         label="Endereço"
-                        defaultValue=""
                         fullWidth
                         size="small"
                         inputProps={{ readOnly: true }}
@@ -625,7 +621,6 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         value={address_number}
                         fullWidth
                         label="Número"
-                        defaultValue=""
                         size="small"
                         inputProps={{ readOnly: true }}
                       />
@@ -637,7 +632,6 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         id="address_city"
                         value={address_city}
                         label="Cidade"
-                        defaultValue=""
                         fullWidth
                         size="small"
                         inputProps={{ readOnly: true }}
@@ -650,7 +644,6 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         id="address_state"
                         value={address_state}
                         label="Estado"
-                        defaultValue=""
                         fullWidth
                         size="small"
                         inputProps={{ readOnly: true }}
@@ -667,7 +660,6 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                         id="address_complement"
                         value={address_complement}
                         label="Complemento"
-                        defaultValue=""
                         fullWidth
                         size="small"
                         inputProps={{ readOnly: true }}
