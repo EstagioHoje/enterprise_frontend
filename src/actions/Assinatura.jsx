@@ -28,11 +28,9 @@ export const assinatura_post = async (
 ) => {
     const endp = endpoints.ASSINATURA_POST;
     const data = {
-        student_data: {
-            cpf: "12345678910"
-        },
+        student_data: {},
         student_cpf: student_cpf,
-        student_college: "USP",
+        student_college: "",
         company_data: company_data,
         company_cnpj: company_cnpj,
         start_date: start_date,
@@ -44,6 +42,16 @@ export const assinatura_post = async (
         description: description,
     }
     return await ApiPost(endp, data)
+}
+
+export const assinatura_empresa = async (id) => {
+    const endp = endpoints.ASSINATURA_SIGN_COMPANY + "?id=" + id;
+    return await ApiPut(endp)
+}
+
+export const assinatura_reject_company = async (id,reject_reason) => {
+    const endp = endpoints.ASSINATURA_REJECT_COMPANY + "?id=" + id + "&reject_reason=" + reject_reason;
+    return await ApiPut(endp)
 }
 
 export const aluno_get_search = async (cpf) => {
