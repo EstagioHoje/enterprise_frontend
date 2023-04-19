@@ -64,7 +64,7 @@ export default function EmpresaReadUpdateDelete({ setAuthorized }) {
       }
     }
     )()
-  }, '');
+  }, []);
 
   const update_empresa = async () => {
     let cnpjString = String(cnpj).replace(/\D/g, '')
