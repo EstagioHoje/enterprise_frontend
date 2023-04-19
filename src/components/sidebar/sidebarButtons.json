@@ -8,10 +8,6 @@
     "imgAlt": "Gere contratos",
     "service": "/assinatura"
   },{
-    "imgSrc": "../../images/reportEvaluation.svg",
-    "imgAlt": "Avalie estagiários",
-    "service": "/relatorio"
-  },{
     "imgSrc": "../../images/dataManagement.svg",
     "imgAlt": "Altere seus dados",
     "service": "/conta"
