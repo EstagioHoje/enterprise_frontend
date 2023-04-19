@@ -72,7 +72,7 @@ export default function AssinaturaCreate({ setAuthorized }) {
       }
     }
     )()
-  }, '');
+  }, []);
 
   const send_proposta = async () => {
     let aluno = await aluno_get_search(String(student_cpf).replace(/\D/g, ""))
