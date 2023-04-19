@@ -10,7 +10,7 @@ export const endpoints = {
 
   ASSINATURA_GET: 'contract/get',
   ASSINATURA_PUT: 'contract/put',
-  ASSINATURA_POST: 'contract/post',
+  ASSINATURA_POST: 'contract/post/',
   ASSINATURA_GET_ALL: 'contract/get/all',
   ASSINATURA_GET_ALL_CPF: 'contract/get/all_cpf',
   ASSINATURA_GET_ALL_UNI: 'contract/get/all_uni',
@@ -51,7 +51,7 @@ export const endpoints = {
 };
 
 export const api_links = {
-BACKEND: 'http://ec2-52-201-162-139.compute-1.amazonaws.com:8000',
+BACKEND: 'http://ec2-3-142-212-243.us-east-2.compute.amazonaws.com:8000',
 FRONTEND: 'http://localhost:1234'
 };
 
