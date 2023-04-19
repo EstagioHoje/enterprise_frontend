@@ -11,6 +11,7 @@ import { api_links, headers_post } from "./endpoint";
  */
 export const ApiPost = async (endpoint_name, data) => {
     const link_api = api_links.BACKEND + '/' + endpoint_name;
+    console.log(link_api)
     let value = null
     try {
         await axios.post(link_api, data, headers_post).then(response => { 

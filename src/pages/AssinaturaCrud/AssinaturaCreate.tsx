@@ -75,11 +75,13 @@ export default function AssinaturaCreate({ setAuthorized }) {
   }, []);
 
   const send_proposta = async () => {
+
     let aluno = await aluno_get_search(String(student_cpf).replace(/\D/g, ""))
     let weekly_hoursInt = parseInt(String(weekly_hours).replace(/\D/g, ""))
     let salaryInt = parseInt(String(salary).replace(/\D/g, ""))
     let transport_bonusInt = parseInt(String(transport_bonus).replace(/\D/g, ""))
     if (aluno.data.data[0] !== undefined) {
+      console.log("testee")
       const company_data = {
         cnpj: cnpj,
         corporate_name: corporate_name,
@@ -97,7 +99,7 @@ export default function AssinaturaCreate({ setAuthorized }) {
         complement: address_complement
       }
       await assinatura_post(
-        student_cpf,
+        String(student_cpf).replace(/\D/g, ""),
         company_data,
         cnpj,
         start_date,

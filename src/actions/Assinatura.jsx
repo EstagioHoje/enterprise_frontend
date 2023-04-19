@@ -26,12 +26,10 @@ export const assinatura_post = async (
     status,
     description
 ) => {
+
     const endp = endpoints.ASSINATURA_POST;
     const data = {
-        student_data: {},
         student_cpf: student_cpf,
-        student_college: "",
-        company_data: company_data,
         company_cnpj: company_cnpj,
         start_date: start_date,
         end_date: end_date,
@@ -41,6 +39,8 @@ export const assinatura_post = async (
         status: status,
         description: description,
     }
+    console.log(endp)
+    console.log(data)
     return await ApiPost(endp, data)
 }
 
