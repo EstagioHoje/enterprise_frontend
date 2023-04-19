@@ -53,7 +53,7 @@ export default function VagaCreate({ setAuthorized }) {
       }
     }
     )()
-  }, '');
+  }, []);
 
   const register_vaga = async () => {
     const weekly_hoursInt = parseInt(String(weekly_hours).replace(/\D/g, ''))
