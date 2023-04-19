@@ -18,7 +18,7 @@ export default function EmpresaReadUpdateDelete({ setAuthorized }) {
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  const cnpj = sessionStorage.getItem('cnpj')
+  const [cnpj, setCnpj] = useState(sessionStorage.getItem("cnpj"))
 
   const [corporate_name, setCorporate_name] = useState('')
   const [line_of_business, setLine_of_business] = useState('')

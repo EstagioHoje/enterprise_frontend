@@ -27,7 +27,7 @@ export default function VagaRead({ setAuthorized }) {
 
   const expanded = true;
   const navigate = useNavigate();
-  const cnpj = localStorage.getItem('cnpj')
+  const [cnpj, setCnpj] = useState(sessionStorage.getItem("cnpj"))
 
   const columns: GridColDef[] = [{
     field: 'id',

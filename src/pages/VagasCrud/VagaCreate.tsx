@@ -17,7 +17,7 @@ import { empresa_get_search } from '../../actions/Empresa';
 
 export default function VagaCreate({ setAuthorized }) {
   const navigate = useNavigate()
-  const cnpj = sessionStorage.getItem('cnpj')
+  const [cnpj, setCnpj] = useState(sessionStorage.getItem("cnpj"))
 
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [windowWidth, setWindowWidth] = useState(window.innerHeight);
