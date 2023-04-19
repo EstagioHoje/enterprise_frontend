@@ -145,7 +145,7 @@ export default function EmpresaReadUpdateDelete({ setAuthorized }) {
                           label='CNPJ'
                           fullWidth
                           size='small'
-                          inputProps={{ readOnly: true, disableUnderline: true }}
+                          inputProps={{ readOnly: true }}
                         />}
                       </InputMask>
                     </Box>
@@ -187,7 +187,6 @@ export default function EmpresaReadUpdateDelete({ setAuthorized }) {
                         id='rh_position_in_company'
                         value={rh_position_in_company}
                         label='Cargo'
-                        defaultValue=''
                         fullWidth
                         size='small'
                         onChange={(e) => SetRh_position_in_company(e.target.value)}
@@ -211,7 +210,6 @@ export default function EmpresaReadUpdateDelete({ setAuthorized }) {
                           id='rh_telephone'
                           fullWidth
                           label='Telefone do RH'
-                          defaultValue=''
                           size='small'
                         />}
                       </InputMask>
@@ -223,7 +221,6 @@ export default function EmpresaReadUpdateDelete({ setAuthorized }) {
                         id='rh_email'
                         value={rh_email}
                         label='Email do RH'
-                        defaultValue=''
                         fullWidth
                         size='small'
                         onChange={(e) => setRh_email(e.target.value)}
@@ -250,7 +247,7 @@ export default function EmpresaReadUpdateDelete({ setAuthorized }) {
                           id='address_cep'
                           fullWidth
                           label='CEP'
-                          defaultValue=''
+                          
                           size='small'
                         />}
                       </InputMask>
@@ -262,7 +259,6 @@ export default function EmpresaReadUpdateDelete({ setAuthorized }) {
                         id='address'
                         value={address}
                         label='Endereço'
-                        defaultValue=''
                         fullWidth
                         size='small'
                         onChange={(e) => setAddress(e.target.value)}
@@ -280,7 +276,6 @@ export default function EmpresaReadUpdateDelete({ setAuthorized }) {
                         value={address_number}
                         fullWidth
                         label='Número'
-                        defaultValue=''
                         size='small'
                         onChange={(e) => setAddress_number(e.target.value)}
                       />
@@ -292,7 +287,6 @@ export default function EmpresaReadUpdateDelete({ setAuthorized }) {
                         id='address_city'
                         value={address_city}
                         label='Cidade'
-                        defaultValue=''
                         fullWidth
                         size='small'
                         onChange={(e) => setAddress_city(e.target.value)}
@@ -305,7 +299,6 @@ export default function EmpresaReadUpdateDelete({ setAuthorized }) {
                         id='address_state'
                         value={address_state}
                         label='Estado'
-                        defaultValue=''
                         fullWidth
                         size='small'
                         onChange={(e) => setAddress_state(e.target.value)}
@@ -322,7 +315,6 @@ export default function EmpresaReadUpdateDelete({ setAuthorized }) {
                         id='address_complement'
                         value={address_complement}
                         label='Complemento'
-                        defaultValue=''
                         fullWidth
                         size='small'
                         onChange={(e) => setAddress_complement(e.target.value)}
@@ -331,7 +323,6 @@ export default function EmpresaReadUpdateDelete({ setAuthorized }) {
                   </Grid>
                 </Grid>
               </Box>
-
               <Box sx={{ my: 2 }}>
                 <Grid container spacing={0} columns='16'>
                   <Grid xs>
