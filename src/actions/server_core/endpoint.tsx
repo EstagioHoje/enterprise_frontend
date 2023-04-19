@@ -17,7 +17,9 @@ export const endpoints = {
   ASSINATURA_GET_ALL_CNPJ: 'contract/get/all_cnpj',
   ASSINATURA_SIGN_STUDENT: 'contract/put/sign_student',
   ASSINATURA_SIGN_TEACHER: 'contract/put/sign_teacher',
+  ASSINATURA_SIGN_COMPANY: 'contract/put/sign_company',
   ASSINATURA_REJECT_STUDENT: 'contract/put/reject_student',
+  ASSINATURA_REJECT_COMPANY: 'contract/put/reject_company',
   ASSINATURA_REJECT_TEACHER: 'contract/put/reject_teacher',
 
   RELATORIO_GET: 'report/get',
