@@ -12,7 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Sidebar } from '../../components/sidebar/sidebar';
 
 import { relatorio_post } from '../../actions/Relatorio';
-import { assinatura_get_search, assinatura_post } from '../../actions/Assinatura';
+import { assinatura_get_search, assinatura_empresa, assinatura_reject_company } from '../../actions/Assinatura';
 import { empresa_get_search } from '../../actions/Empresa';
 
 export default function AssinaturaReadComplete({ setAuthorized }) {
@@ -118,15 +118,13 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
     )()
   }, '');
 
-  const register_assinatura = async () => {
-    assinatura_post(
-      start_date,
-      end_date,
-      weekly_hours,
-      salary,
-      transport_bonus,
-      description
-    )
+  const apply = async () => {
+    console.log(assinatura_empresa(id))
+    navigate("/assinatura")
+  }
+
+  const reject = async () => {
+    console.log(assinatura_reject_company(id, reject_reason))
     navigate("/assinatura")
   }
 
@@ -678,6 +676,53 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
                   </Grid>
                 </Grid>
               </Box>
+              <Collapse in={!status}>
+                <Box sx={{ my: 2 }}>
+                  <Grid container spacing={0} columns="16">
+                    <Grid xs>
+                      <Box sx={{ my: 2, mr: 1 }}>
+                        <Button fullWidth sx={{
+                          backgroundColor: '#072d69',
+                          color: '#feea37'
+                        }}
+                          onClick={() => apply()}>
+                          Aprovar contrato
+                        </Button>
+                      </Box>
+                    </Grid>
+                  </Grid>
+                </Box>
+                <Box sx={{ my: 2 }}>
+                  <Grid container spacing={0} columns="16">
+                    <Grid xs>
+                      <TextField
+                        id="reject_reason"
+                        value={reject_reason}
+                        label="Caso queira rejeitar o contrato explique o motivo"
+                        fullWidth
+                        size="small"
+                        multiline
+                        rows={4}
+                        inputProps={{ maxLength: 1000 }}
+                        onChange={(e) => setReject_reason(e.target.value)}
+                      />
+                    </Grid>
+                  </Grid>
+                  <Grid container spacing={0} columns="16">
+                    <Grid xs>
+                      <Box sx={{ my: 2, mr: 1 }}>
+                        <Button fullWidth sx={{
+                          backgroundColor: '#cb1d1d',
+                          color: '#feea37'
+                        }}
+                          onClick={() => reject()}>
+                          Rejeitar contrato
+                        </Button>
+                      </Box>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </Collapse>
             </Box>
           </Grid>
         </Grid>
