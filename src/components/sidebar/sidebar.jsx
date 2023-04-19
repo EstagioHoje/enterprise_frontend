@@ -4,7 +4,7 @@ import '../../images/jobOffers.svg'
 import '../../images/handWithPencil.svg'
 import '../../images/reportEvaluation.svg'
 import '../../images/dataManagement.svg'
-import teacherButtons from '../../data/teacherButtons.json'
+import sidebarButtons from './sidebarButtons.json'
 
 import * as React from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
@@ -14,18 +14,18 @@ export function Sidebar({ setAuthorized }) {
   const buttonsList = [];
 
   function logOut() {
-    localStorage.setItem("isAuthorized","false");
-    localStorage.removeItem("cnpj");
+    sessionStorage.setItem('isAuthorized','false');
+    sessionStorage.removeItem('cnpj');
     setAuthorized(false);
     sessionStorage.setItem('lastPage', location.pathname);
-    navigate("/login");
+    navigate('/login');
   }
 
-  teacherButtons.forEach((button) => {
+  sidebarButtons.forEach((button) => {
     buttonsList.push(
       <NavLink className='navButton' to={button.service}>
-          <img src={require(button.imgSrc)} alt={button.imgAlt} />
-          <p>{button.imgAlt}</p>
+        <img src={require(button.imgSrc)} alt={button.imgAlt} />
+        <p>{button.imgAlt}</p>
       </NavLink>
     )
   });

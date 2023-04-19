@@ -19,7 +19,7 @@ export const ApiGet = async (endpoint_name) => {
         });
     } catch (error) {
         console.log(error.response);
-        return error.response
+        // return error.response
     }
     return value;
 };

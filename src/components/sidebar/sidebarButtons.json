@@ -1,15 +1,15 @@
 [
   {
     "imgSrc": "../../images/jobOffers.svg",
-    "imgAlt": "Vagas",
+    "imgAlt": "Gerencie suas vagas",
     "service": "/vagas"
   },{
     "imgSrc": "../../images/handWithPencil.svg",
-    "imgAlt": "Assine contratos",
+    "imgAlt": "Gere contratos",
     "service": "/assinatura"
   },{
     "imgSrc": "../../images/reportEvaluation.svg",
-    "imgAlt": "Gere relatórios",
+    "imgAlt": "Avalie estagiários",
     "service": "/relatorio"
   },{
     "imgSrc": "../../images/dataManagement.svg",

@@ -28,13 +28,12 @@ import EmpresaLogin from './pages/EmpresaLogin/EmpresaLogin';
 import './App.css';
 
 const App = () => {
-  const [isAuthorized, setAuthorized] = useState(JSON.parse(localStorage.getItem('isAuthorized')));
+  const [isAuthorized, setAuthorized] = useState(JSON.parse(sessionStorage.getItem('authorized')));
 
   useEffect(() => {
     function handleStorage() {
-      console.log(localStorage.getItem('isAuthorized'));
-      setAuthorized(JSON.parse(localStorage.getItem('isAuthorized')))
-      console.log(typeof isAuthorized);
+      console.log(sessionStorage.getItem('authorized'));
+      setAuthorized(JSON.parse(sessionStorage.getItem('authorized')))
     }
     window.addEventListener('storage', handleStorage);
     return _ => {

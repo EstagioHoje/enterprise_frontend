@@ -5,7 +5,6 @@ import { api_links, headers } from "./endpoint";
  * @brief Get data from server.
  *
  * @param endpoint_name Title to the data location in the API.
- * @param data data to send.
  *
  * @returns Data received from server.
  */

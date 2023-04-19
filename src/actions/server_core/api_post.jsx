@@ -18,7 +18,6 @@ export const ApiPost = async (endpoint_name, data) => {
             return response 
         });
     } catch (error) {
-        console.log("respota erro: \n")
         console.log(error.response);
     }
     return value;

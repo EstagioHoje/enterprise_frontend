@@ -12,7 +12,6 @@ import { api_links, headers_post } from "./endpoint";
 export const ApiPut = async (endpoint_name, data) => {
     const link_api = api_links.BACKEND + '/' + endpoint_name;
     let value = null;
-
     try {
         await axios.put(link_api, data, headers_post).then(response => { 
             value = response 
@@ -20,7 +19,7 @@ export const ApiPut = async (endpoint_name, data) => {
         });
     } catch (error) {
         console.log(error.response);
-        return null;
+        // return null;
     }
     return value
 };
