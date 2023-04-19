@@ -116,7 +116,7 @@ export default function AssinaturaReadComplete({ setAuthorized }) {
       }
     }
     )()
-  }, '');
+  }, []);
 
   const apply = async () => {
     console.log(assinatura_empresa(id))
